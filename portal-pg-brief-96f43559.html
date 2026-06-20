@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pg官网 · 知识库入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fbfbf9;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      color: #1e2a2f;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    .page-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* 标题层级 */
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+      color: #1a2b32;
+      border-left: 5px solid #9ab0b9;
+      padding-left: 1.2rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 450;
+      margin-top: 3.2rem;
+      margin-bottom: 1.2rem;
+      color: #2b4049;
+      letter-spacing: -0.01em;
+      border-bottom: 1px solid #dce4e8;
+      padding-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 440;
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      color: #34525e;
+    }
+
+    p, li {
+      font-size: 1rem;
+      color: #2f4048;
+      margin-bottom: 1em;
+    }
+
+    /* 目录感卡片网格 */
+    .index-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 1.2rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .index-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.4rem 1rem 1.2rem;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(160, 180, 190, 0.08);
+      transition: box-shadow 0.2s ease, transform 0.15s ease;
+      border: 1px solid #eef3f5;
+    }
+
+    .index-card:hover {
+      box-shadow: 0 2px 8px rgba(60, 90, 100, 0.08), 0 6px 20px rgba(150, 175, 185, 0.12);
+      transform: translateY(-2px);
+    }
+
+    .index-card .card-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #6f8d99;
+      background: #eaf0f3;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      margin-bottom: 0.6rem;
+    }
+
+    .index-card h4 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      color: #1d313a;
+    }
+
+    .index-card p {
+      font-size: 0.9rem;
+      color: #4b646f;
+      margin-bottom: 0;
+    }
+
+    /* 说明区 / 提示区卡片 */
+    .info-block {
+      background: #f3f8fa;
+      border-radius: 16px;
+      padding: 1.6rem 1.8rem;
+      margin: 2rem 0;
+      border-left: 6px solid #96b3c0;
+    }
+
+    .info-block.tip {
+      background: #f0f5f1;
+      border-left-color: #7fa893;
+    }
+
+    .info-block.related {
+      background: #f7f5f0;
+      border-left-color: #b7a88c;
+    }
+
+    .info-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-block strong {
+      font-weight: 500;
+      color: #1b3a45;
+    }
+
+    /* FAQ 摘要样式（紧凑） */
+    .faq-mini {
+      margin: 2.2rem 0 1.2rem;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #e1e9ed;
+      padding: 0.9rem 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-weight: 480;
+      color: #1d353f;
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-a {
+      font-size: 0.95rem;
+      color: #42606d;
+      margin-left: 0.8rem;
+    }
+
+    /* 链接样式 */
+    a {
+      color: #286073;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+
+    a:hover {
+      border-bottom-color: #286073;
+    }
+
+    .footer-links {
+      margin-top: 3.5rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid #e0e9ed;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.8rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-links a {
+      color: #3a5b68;
+      border-bottom: 1px dotted #b7ced9;
+    }
+
+    .footer-links a:hover {
+      border-bottom-color: #286073;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #dee7ec;
+      margin: 2rem 0;
+    }
+
+    /* 响应式 */
+    @media (max-width: 520px) {
+      body {
+        padding: 2rem 1rem 4rem;
+      }
+      h1 {
+        font-size: 1.8rem;
+        padding-left: 0.8rem;
+      }
+      .index-grid {
+        grid-template-columns: 1fr;
+      }
+      .info-block {
+        padding: 1.2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <h1>pg官网 · 知识库入口</h1>
+
+  <p style="font-size:1.05rem; color:#375a67;">
+    这里是围绕 <a href="https://portal--pg.com">pg官网</a> 搭建的轻量知识库首页，帮助你在访问主站前快速了解方向、背景与可用资源。
+    页面以目录式卡片、说明区块和常见问题摘要组成，适合作为稳定入口的参考页。
+  </p>
+
+  <!-- 目录感卡片区 -->
+  <div class="index-grid">
+    <div class="index-card">
+      <span class="card-label">平台</span>
+      <h4>portal 概览</h4>
+      <p>聚合工具与服务的统一界面，提供模块化操作路径。</p>
+    </div>
+    <div class="index-card">
+      <span class="card-label">指南</span>
+      <h4>快速参考</h4>
+      <p>常见操作流程、权限说明与环境配置要点。</p>
+    </div>
+    <div class="index-card">
+      <span class="card-label">集成</span>
+      <h4>对接方式</h4>
+      <p>API 接口、回调设置及第三方登录兼容说明。</p>
+    </div>
+    <div class="index-card">
+      <span class="card-label">更新</span>
+      <h4>变更日志</h4>
+      <p>功能迭代与修复记录，保持透明同步。</p>
+    </div>
+  </div>
+
+  <!-- 说明区：稳定入口视角 -->
+  <div class="info-block">
+    <p><strong>关于本入口页</strong><br>
+    许多用户希望先了解一个站点的内容结构，再决定深入使用。本页面从「pg官网」的周边知识出发，整理了目录索引与说明提示，你可以将这里视为一个轻量的文档前厅。所有信息均基于公开可用的材料，不包含未授权的内部细节。
+    </p>
+  </div>
+
+  <!-- 特点 + 场景（合并叙述） -->
+  <h2>设计特点与适用场景</h2>
+  <p>页面采用窄正文宽度和清晰标题层级，减少视觉干扰。卡片按主题分类，适合快速浏览；提示区和相关区块则针对常见疑问做补充说明。无论你是初次接触还是需要回顾指引，都可以通过下方内容建立整体印象，再直接前往 <a href="https://portal--pg.com">pg官网</a> 操作。</p>
+
+  <p>举例来说，如果你需要查阅某个模块的入口路径，可以先在本页的「目录卡片」中找到对应类别，然后参考说明区的注意事项。这种方式避免了在多个页面间来回跳转，也降低了认知负担。</p>
+
+  <!-- 提示区 -->
+  <div class="info-block tip">
+    <p><strong>提示</strong> · 部分链接和功能可能因账号权限或区域设置而不同。若遇到访问问题，建议先确认网络环境，或从主站帮助中心获取最新公告。本知识库仅作索引参考，不替代官方文档。</p>
+  </div>
+
+  <!-- FAQ 摘要（简短三条） -->
+  <h2>常见问题摘要</h2>
+  <div class="faq-mini">
+
+    <div class="faq-item">
+      <div class="faq-q">Q: 是否需要注册才能访问 pg 官网？</div>
+      <div class="faq-a">大部分公开页面可以直接浏览，部分管理或个性化功能需登录账户。具体以 <a href="https://portal--pg.com">pg官网</a> 实际展示为准。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: 页面中的「目录卡片」涵盖所有功能吗？</div>
+      <div class="faq-a">卡片选取的是较常用或具有代表性的分类，并非完整清单。完整内容请直接在官网内探索。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: 我可以在自己的项目里引用这个知识库页吗？</div>
+      <div class="faq-a">本页为公开信息整理，引用时建议注明来源为 pg 官网 相关公开资料。</div>
+    </div>
+
+  </div>
+
+  <!-- 相关信息区 -->
+  <div class="info-block related">
+    <p><strong>相关信息</strong><br>
+    · 主站语言版本：简体中文 / 英文（部分界面）<br>
+    · 推荐浏览器：Chrome, Firefox, Edge 最新稳定版<br>
+    · 服务时间：主站为 7×24 小时，但维护窗口可能调整<br>
+    · 反馈渠道：可通过官网联系表单或站内工单系统提交建议</p>
+  </div>
+
+  <hr>
+
+  <div class="footer-links">
+    <span>知识库入口页</span>
+    <span>· 内容基于公开信息整理</span>
+    <span><a href="https://portal--pg.com">pg官网</a></span>
+  </div>
+
+</div>
+</body>
+</html>
